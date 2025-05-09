@@ -1,3 +1,5 @@
+# 项目加入了自动化构建
+
 # 跟数据库建立联系
 
 1. pnpm install --save @nestjs/typeorm typeorm mysql2
