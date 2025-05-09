@@ -1,1 +1,23 @@
+name: Deploy to Aliyun
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build: # 第一个job的名字
+    runs-on: ubuntu-latest # runner 运行的环境
+    steps: # 接下来就开始小步骤
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
+      - name: Install sshpass
+        run: sudo apt-get install sshpass
+
+      - name: Deploy via SSH
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            cd /home/workspace/student_management_back_end
+            git pull origin main
+            docker compose down
+            docker compose up -d --build
+          EOF

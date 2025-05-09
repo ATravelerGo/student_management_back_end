@@ -1,0 +1,9 @@
+version: "1.0"
+services:
+  student-management-service:
+    build: . #代表构建同一路径下的Dockerfile
+    container_name: "student-management-service"
+    ports:
+      - "3000:3000"
+    restart: always
+
