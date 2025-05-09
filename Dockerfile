@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:22
 LABEL authors="chen"
 
 # 设置工作目录
