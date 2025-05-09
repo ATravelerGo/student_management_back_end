@@ -15,7 +15,7 @@ jobs:
 
       - name: Deploy via  SSH
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -t -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -tt -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             cd /home/workspace/student_management_back_end
             ls
             git pull origin main

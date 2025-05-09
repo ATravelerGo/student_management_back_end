@@ -7,6 +7,10 @@ WORKDIR /app
 # 拷贝package.json 、lock文件 到工作目录 因为WORKDIR 已经设置了
 COPY package*.json ./
 
+RUN npm config set registry https://registry.npmmirror.com
+
+RUN npm -g install pnpm
+
 RUN npm install
 
 # 拷贝源代码
