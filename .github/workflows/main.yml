@@ -17,6 +17,7 @@ jobs:
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -t -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             cd /home/workspace/student_management_back_end
+            ls
             git pull origin main
             docker compose down
             docker compose up -d --build
