@@ -195,3 +195,37 @@
 # 文件上传
 
 1. npm i -D @types/multer 必须要安装这个依赖，官网有说 https://nest.nodejs.cn/techniques/file-upload
+
+踩坑点
+> 每个controller中的函数都得在最外层return
+
+```ts
+ uploadFile(@UploadedFile()
+file: Express.Multer.File;
+)
+{
+  const url = `/home/workspace/student_management_assets/images/${file.originalname}`;
+
+  return this.uploadService.create({ url }).then((data) => {  //这一行的return 千万千万不能丢
+    console.log(data);
+    return ResponseHelper.success(data, '成功啦');
+  });
+}
+```
+
+> 如果你没有设置 filename，Multer 会自动为文件生成一个默认的文件名，通常是一个随机的字符串。如果没有明确指定文件名，可能会导致文件保存时没有扩展名，或扩展名不正确。
+
+```ts 
+@UseInterceptors(
+  FileInterceptor('file', {
+    storage: diskStorage({
+      destination: path.resolve('D:\\testUpload'),
+      filename: (req, file, cb) => { //这个设置必须要有
+        //如果你没有设置 filename，Multer 会自动为文件生成一个默认的文件名，通常是一个随机的字符串。如果没有明确指定文件名，可能会导致文件保存时没有扩展名，或扩展名不正确。
+        const filename = `${Date.now()}-${file.originalname}`;
+        cb(null, filename);
+      },
+    }),
+  }),
+)
+```

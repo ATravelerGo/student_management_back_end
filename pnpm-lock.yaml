@@ -26,6 +26,9 @@ importers:
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
+      multer:
+        specifier: 1.4.5-lts.2
+        version: 1.4.5-lts.2
       mysql2:
         specifier: ^3.14.1
         version: 3.14.1

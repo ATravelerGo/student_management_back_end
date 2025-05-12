@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { UploadModule } from './upload/upload.module';
 import * as dotenv from 'dotenv';
+
 dotenv.config();
 
 import * as process from 'node:process';
@@ -19,7 +20,7 @@ const sqlModule = TypeOrmModule.forRoot({
   logging: false,
   logger: 'advanced-console',
   database: 'student_information_management',
-  synchronize: false, //生产环境设置false 自动同步会修改表结构
+  synchronize: true, //生产环境设置false 自动同步会修改表结构
   autoLoadEntities: true, //这个和下面的哪个二选一就可以
   // entities: [path.join(__dirname, './**/*.entity{.ts,.js}')],
   extra: {
