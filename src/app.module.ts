@@ -16,7 +16,6 @@ dotenv.config();
       isGlobal: true, //让 ConfigService 在任何模块中都可用（推荐）
       envFilePath: ['.env'], //默认就是 .env，指定也可以是 `.env.${process.env.NODE_ENV}`
     }),
-    StudentsModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -42,6 +41,7 @@ dotenv.config();
       },
     }),
     UploadModule,
+    StudentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
