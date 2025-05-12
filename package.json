@@ -4,6 +4,10 @@
   "description": "",
   "author": "",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "engineStrict": true,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
@@ -21,6 +25,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",

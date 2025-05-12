@@ -229,3 +229,19 @@ file: Express.Multer.File;
   }),
 )
 ```
+
+> nestJS默认是不会区分 .env.development 与 .env.production的 只会从.env中获取
+> 这个时候我们需要引入 @nestjs/config @nestjs/config 包内部使用 dotenv。
+
+```nodemon
+pnpm i --save @nestjs/config
+```
+
+1. 我们需要在main.module中导入ConfigModule 通常，我们会将其导入根 AppModule 并使用 .forRoot() 静态方法控制其行为
+
+```ts
+  imports: [ConfigModule.forRoot({
+  isGlobal: true, //让 ConfigService 在任何模块中都可用（推荐）
+  envFilePath: ['.env'], //默认就是 .env，指定也可以是 `.env.${process.env.NODE_ENV}`
+})],
+```
