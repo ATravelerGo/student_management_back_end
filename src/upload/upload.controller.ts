@@ -30,15 +30,14 @@ export class UploadController {
       }),
     }),
   )
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
     const url = `D:\\testUpload\\${file.originalname}`;
 
     console.log('url', url);
 
-    return this.uploadService.create({ url }).then((data) => {
-      //这个return千万不能丢
-      console.log(data);
-      return ResponseHelper.success(data, '成功啦');
-    });
+    const data = await this.uploadService.create({ url });
+    //这个return千万不能丢
+    console.log(data);
+    return ResponseHelper.success(data, '成功啦');
   }
 }
