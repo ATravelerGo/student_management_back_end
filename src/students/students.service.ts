@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,7 +16,7 @@ export class StudentsService {
   }
 
   findAll() {
-    return `This action returns all students`;
+    throw new HttpException('文章已存在', HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
   findOne(id: number) {

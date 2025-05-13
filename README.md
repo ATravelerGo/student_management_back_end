@@ -245,3 +245,5 @@ pnpm i --save @nestjs/config
   envFilePath: ['.env'], //默认就是 .env，指定也可以是 `.env.${process.env.NODE_ENV}`
 })],
 ```
+
+# 通过命令创建过滤器 nest g filter <filter-name>
