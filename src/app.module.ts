@@ -7,9 +7,6 @@ import { DataSource } from 'typeorm';
 import { UploadModule } from './upload/upload.module';
 import { ConfigModule } from '@nestjs/config';
 import { typeormConfig } from './config/typeorm.config';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 @Module({
   imports: [
