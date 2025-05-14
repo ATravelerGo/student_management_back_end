@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   HttpCode,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
@@ -31,5 +32,12 @@ export class StudentsController {
   @Get()
   findAll() {
     return this.studentsService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    const result = await this.studentsService.findOne(id);
+
+    return ResponseHelper.success(result, '请求成功');
   }
 }

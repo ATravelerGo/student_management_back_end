@@ -292,3 +292,22 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
 }
 
 ```
+
+# 管道
+
+管道的用处：用在控制器层使用
+
+1. 转型：将输入数据转换为所需要的形式（例如，从字符串到整数）
+   在这里 id在url中获取是个string类型的，通过管道转型后，id就是个number类型数据
+
+```nestjs
+ @Get(':id')
+findOne(@Param('id', ParseIntPipe)
+id: number
+)
+{
+  return this.studentsService.findOne(id);
+}
+```
+
+2. 验证：评估输入数据，如果有效，只需将其原样传递，否则抛出异常

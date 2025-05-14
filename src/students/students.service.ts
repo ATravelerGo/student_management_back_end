@@ -20,7 +20,7 @@ export class StudentsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} student`;
+    return this.studentsRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateStudentDto: UpdateStudentDto) {
