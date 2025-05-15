@@ -311,3 +311,43 @@ id: number
 ```
 
 2. 验证：评估输入数据，如果有效，只需将其原样传递，否则抛出异常
+
+# 守卫
+
+守卫是一个用 @Injectable() 装饰器注释的类，它实现了 CanActivate 接口。
+
+> 防护在所有中间件之后、任何拦截器或管道之前执行。
+
+# 验证
+
+使用内置的 ValidationPipe
+要开始使用它，我们首先安装所需的依赖。
+> npm i --save class-validator class-transformer
+> 就是通过管道的设置 new ValidationPipe({ transform: true })  这个可以放到单独的路由里，但是推荐放到全局
+> 这个管道会自动对DTO进行转换（把js的对象，转为为类），同时还自动校验
+
+如果不加管道配合的话就得自己手动转换与验证，不推荐手动，推荐全局管道设置
+
+```ts
+import { validate } from 'class-validator';
+
+const dto = plainToInstance(CreateUserDto, body);// 转化
+
+const errors = await validate(dto); //验证
+if (errors.length > 0) {
+// 抛出错误或自定义处理
+  throw new BadRequestException(errors);
+}
+```
+
+***全局添加(main.ts)***
+
+```ts
+app.useGlobalPipes(
+  new ValidationPipe({
+    transform: true, // 启用 class-transformer
+    // whitelist: true, // 移除未在 DTO 中定义的字段
+    // forbidNonWhitelisted: true, // 非白名单字段报错
+  }),
+);
+```

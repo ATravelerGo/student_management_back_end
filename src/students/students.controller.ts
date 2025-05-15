@@ -8,10 +8,10 @@ import {
   Delete,
   HttpCode,
   ParseIntPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
 import { ResponseHelper } from '../common/response.helper';
 
 @Controller('students')
